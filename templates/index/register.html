@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<div class="container bg-light border rounded">
+    <br>
+    <div class="row justify-content-center justify-content-evenly">
+        <div class="col">
+            <div class="bg-white border rounded">
+                <form method="POST" class="p-2">
+                    {% csrf_token %}
+                    <div class="text-center">username</div>
+                    <input name="username" class="form-control" type="text" placeholder="username">
+                    <div class="text-center">email</div>
+                    <input name="email" class="form-control" type="email" placeholder="example@email.com">
+                    <div class="text-center">password</div>
+                    <input name="password1" class="form-control" type="password" placeholder="password">
+                    <div class="text-center">password</div>
+                    <input name="password2" class="form-control" type="password" placeholder="repeat the password">
+                    <br>
+                    <button type="submit" class="btn bg-light border w-100">submit</button>
+                </form>
+                <br>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="container bg-white border rounded h-100">
+                <h3>registration</h3>
+                <p>password should be at least 12 symbols long</p>
+                <p>email should be email</p>
+                <p>you will receive enormous amount of spam to your email after registration on this website and u can't do anything with it</p>
+                <p>also we will have all the rights to sell u in slavery</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for message in messages %}
+            <div class="col rounded bg-warning p-2">
+                {{message}}
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <br>
+</div>
+{% endblock %}

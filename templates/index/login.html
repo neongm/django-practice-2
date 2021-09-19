@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container bg-white border rounded">
+    <br><br>
+    <div class="row justify-content-center justify-content-evenly">
+        <div class="col-4 border">
+            <br>
+            <h4 class="text-center"> login </h4>
+            <form method="POST" class="p-2">
+                {% csrf_token %}
+                <div class="text-center">username</div>
+                <input name="username" class="form-control" type="text" placeholder="username">
+                <div class="text-center">password</div>
+                <input name="password" class="form-control" type="password" placeholder="password">
+                <br>
+                <button type="submit" class="btn bg-light border w-100">submit</button>
+            </form>
+            <br>
+
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        {% for message in messages %}
+        <div class="row p-2">
+            <div class="col rounded bg-warning p-2">
+                {{message}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+</div>
+
+{% endblock %}

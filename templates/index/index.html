@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<div class="container bg-light border rounded">
+    <div class="row">
+        <div class="col bg-white border rounded h-100 m-1 p-3">
+            <h6 class="display-6">main page</h6>
+            here is all the main information
+        </div>
+
+        <div class="row col bg-white border rounded h-100 m-1 p-3">
+            <div class="col container">
+                {% if request.user.is_authenticated %}
+                <div class="row h-100">
+                    <div class="col">
+                        <h6 class="display-6">{{user.username}}</h6>
+                    you are logged into account
+                    </div>
+                    <div class="col container h-100">
+                        <div class="row"><a>account</a></div>
+                        <div class="row"><a>settings</a></div>
+                        <div class="row"><a class="text-decoration-none text-black" href="{% url 'logout' %}">logout</a></div>
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="row">
+                    <div class="col">
+                        <h6 class="display-6">account</h6>
+                    you are not logged into account
+                    </div>
+                    <div class="col row align-items-center">
+                        <div class="container">
+                            <div class="row">
+                                <a class="text-decoration-none text-black" href="{% url 'login' %}">login</a>
+                            </div>
+                            <div class="row">
+                                <a class="text-decoration-none text-black" href="{% url 'register' %}">register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif%}
+            </div>
+        </div>
+
+    </div>
+
+    <h1>content</h1>
+    <p>this side made only for testing purposes</p>
+    <br>
+
+</div>
+{% endblock %}
