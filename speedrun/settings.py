@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -79,8 +82,13 @@ WSGI_APPLICATION = 'speedrun.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'ec2-54-217-195-234.eu-west-1.compute.amazonaws.com',
+        'NAME': 'dabe23fob1sd2e',
+        'USER': 'mmvinqevnevnur',
+        'PORT:': '5432',
+        'PASSWORD': '43db5390d528a12998f0326917d9ed2bb6634cc90a766e6d521fda5842db83f0',
+        'URI': 'postgres://mmvinqevnevnur:43db5390d528a12998f0326917d9ed2bb6634cc90a766e6d521fda5842db83f0@ec2-54-217-195-234.eu-west-1.compute.amazonaws.com:5432/dabe23fob1sd2e'
     }
 }
 
@@ -121,9 +129,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
