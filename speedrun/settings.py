@@ -26,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 try:
     SECRET_KEY =  os.environ['secret_key']
 except:
+    print("secret key not found in env variables")
     SECRET_KEY = 'django-insecure-2&(3$iz!iz!60#a0d0v6&7-2mkpx=q_wx^27%l91)60r2*f)!m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
