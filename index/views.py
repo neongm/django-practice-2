@@ -16,9 +16,10 @@ def index(req):
         }
     )
     json_response = response.json()
+    print(json_response)
 
     for not_url in json_response:
-        gists_array.append(f"https://gist.github.com/neongm/{not_url['url'][not_url['url'].rfind('/')+1::]}.js")
+        gists_array.append(f"https://gist.github.com/{not_url['owner']['login']}/{not_url['url'][not_url['url'].rfind('/')+1::]}.js")
 
 
     context = {
