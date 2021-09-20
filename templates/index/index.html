@@ -60,9 +60,11 @@
     <hr />
     <div class="container">
         <h3 class="lead">github gist integration example:</h3>
+        {% for gist_url in gists %}
         <div>
-            <script src="https://gist.github.com/neongm/6448a139acfa6314df2e4776eaacaf0a.js"></script>
+            <script src="{{gist_url}}"> </script>
         </div>
+        {% endfor %}
     </div>
     <br>
 

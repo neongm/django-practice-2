@@ -3,9 +3,26 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
 
+# for github gists integration
+import requests
 
 def index(req):
+
+    gists_array = []
+    response = requests.get(
+        "https://api.github.com/users/neongm/gists",
+        headers={
+            'Accept': 'application/vnd.github.v3+json'
+        }
+    )
+    json_response = response.json()
+
+    for not_url in json_response:
+        gists_array.append(f"https://gist.github.com/neongm/{not_url['url'][not_url['url'].rfind('/')+1::]}.js")
+
+
     context = {
+        'gists': gists_array[::-1],
         'title': 'speedrun page'
     }
     return render(req, 'index/index.html', context)
