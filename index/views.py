@@ -23,7 +23,7 @@ def index(req):
 
 
     context = {
-        'gists': gists_array[::-1],
+        'gists': gists_array,
         'title': 'speedrun page'
     }
     return render(req, 'index/index.html', context)
