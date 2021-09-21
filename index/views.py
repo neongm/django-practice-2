@@ -15,10 +15,11 @@ def index(req):
             'Accept': 'application/vnd.github.v3+json'
         }
     )
-    json_response = response.json()
-
-    for not_url in json_response:
-        gists_array.append(f"https://gist.github.com/{not_url['owner']['login']}/{not_url['url'][not_url['url'].rfind('/')+1::]}.js")
+    # checking if the API limit exceeded or any other errors
+    if response.status_code == requests.codes.ok:
+        json_response = response.json()
+        for not_url in json_response:
+            gists_array.append(f"https://gist.github.com/{not_url['owner']['login']}/{not_url['url'][not_url['url'].rfind('/')+1::]}.js")
 
 
     context = {
