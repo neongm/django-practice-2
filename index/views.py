@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-
+from django.contrib.auth.views import login_required
 # for github gists integration
 import requests
 
 def index(req):
-
     gists_array = []
     response = requests.get(
         "https://api.github.com/users/neongm/gists",
@@ -84,3 +83,11 @@ def login(req):
 def logout_user(req):
     auth.logout(req)
     return render(req, 'index/login.html')
+
+@login_required(login_url='login')
+def account(req):
+    context = {
+
+    }
+
+    return render(req, 'index/account.html', context)
